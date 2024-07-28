@@ -1,0 +1,11 @@
+[
+    {
+        "label": "print_star_pattern_1",
+        "kind": 2,
+        "importPath": "star",
+        "description": "star",
+        "peekOfCode": "def print_star_pattern_1():\n for i in range(5):\n  for j in range(5):\n   print(\"*\")\nprint_star_pattern_1()",
+        "detail": "star",
+        "documentation": {}
+    }
+]

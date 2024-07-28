@@ -1,0 +1,83 @@
+[
+    {
+        "label": "string",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "string",
+        "description": "string",
+        "detail": "string",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "keep_alpha",
+        "kind": 2,
+        "importPath": "hackerrank.week1.5_formatting",
+        "description": "hackerrank.week1.5_formatting",
+        "peekOfCode": "def keep_alpha(i_string: str):\n    n_string = []\n    for i in i_string:\n        if i.isalpha():\n            n_string.append(i)\n    return ''.join(n_string)\ndef get_cap(i_string: str):\n    first_cap = []\n    for i in range(len(i_string)):\n        if not i_string[i] in string.ascii_lowercase:",
+        "detail": "hackerrank.week1.5_formatting",
+        "documentation": {}
+    },
+    {
+        "label": "get_cap",
+        "kind": 2,
+        "importPath": "hackerrank.week1.5_formatting",
+        "description": "hackerrank.week1.5_formatting",
+        "peekOfCode": "def get_cap(i_string: str):\n    first_cap = []\n    for i in range(len(i_string)):\n        if not i_string[i] in string.ascii_lowercase:\n            first_cap.append(i)\n    first_cap.append(len(i_string))\n    return first_cap\ndef get_string_list(i_string: str):\n    s = []\n    rng = get_cap(i_string)",
+        "detail": "hackerrank.week1.5_formatting",
+        "documentation": {}
+    },
+    {
+        "label": "get_string_list",
+        "kind": 2,
+        "importPath": "hackerrank.week1.5_formatting",
+        "description": "hackerrank.week1.5_formatting",
+        "peekOfCode": "def get_string_list(i_string: str):\n    s = []\n    rng = get_cap(i_string)\n    rng.insert(0, 0)\n    for i in range(len(rng) - 1):\n        n = rng[i]\n        x = rng[i + 1]\n        s.append(i_string[n:x])\n    n = [i for i in s if i]\n    return n",
+        "detail": "hackerrank.week1.5_formatting",
+        "documentation": {}
+    },
+    {
+        "label": "split_operation",
+        "kind": 2,
+        "importPath": "hackerrank.week1.5_formatting",
+        "description": "hackerrank.week1.5_formatting",
+        "peekOfCode": "def split_operation(i_string: str):\n    c_name = keep_alpha(i_string)\n    n = ' '.join(i.lower() for i in get_string_list(c_name))\n    return n\ndef combine_operation(i_string: str, class_type: str):\n    n = []\n    l_name = i_string.split()\n    for i in range(len(l_name)):\n        if class_type != 'C':\n            if i == 0:",
+        "detail": "hackerrank.week1.5_formatting",
+        "documentation": {}
+    },
+    {
+        "label": "combine_operation",
+        "kind": 2,
+        "importPath": "hackerrank.week1.5_formatting",
+        "description": "hackerrank.week1.5_formatting",
+        "peekOfCode": "def combine_operation(i_string: str, class_type: str):\n    n = []\n    l_name = i_string.split()\n    for i in range(len(l_name)):\n        if class_type != 'C':\n            if i == 0:\n                n.append(l_name[i].lower())\n            else:\n                n.append(l_name[i].title())\n        else:",
+        "detail": "hackerrank.week1.5_formatting",
+        "documentation": {}
+    },
+    {
+        "label": "convert",
+        "kind": 2,
+        "importPath": "hackerrank.week1.5_formatting",
+        "description": "hackerrank.week1.5_formatting",
+        "peekOfCode": "def convert(i_string: str):\n    operation = i_string[0]\n    class_type = i_string[2]\n    class_name = i_string[4:]\n    if operation == 'S':\n        return split_operation(class_name)\n    else:\n        return combine_operation(class_name, class_type)\nif __name__ == '__main__':\n    for line in sys.stdin:",
+        "detail": "hackerrank.week1.5_formatting",
+        "documentation": {}
+    },
+    {
+        "label": "word",
+        "kind": 5,
+        "importPath": "hackerrank.week1.5_formatting",
+        "description": "hackerrank.week1.5_formatting",
+        "peekOfCode": "word = \"C;M;mouse pad\"",
+        "detail": "hackerrank.week1.5_formatting",
+        "documentation": {}
+    }
+]

@@ -1,0 +1,154 @@
+const readline = require('readline')
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+})
+
+// Function to keep only alphabetic characters
+function keepAlpha(iString) {
+  return iString.replace(/[^a-zA-Z]/g, '')
+}
+
+// Function to get the positions of the first capital letters
+function getCap(iString) {
+  const firstCap = []
+  for (let i = 0; i < iString.length; i++) {
+    if (iString[i].toLowerCase() !== iString[i]) {
+      firstCap.push(i)
+    }
+  }
+  firstCap.push(iString.length) // add the end of the string
+  return firstCap
+}
+
+// Function to create the string list based on capital letters
+function getStringList(iString) {
+  const rng = getCap(iString)
+  rng.unshift(0) // add the beginning of the string
+  const parts = []
+
+  for (let i = 0; i < rng.length - 1; i++) {
+    const n = rng[i]
+    const x = rng[i + 1]
+    parts.push(iString.substring(n, x))
+  }
+
+  return parts.filter(Boolean) // filter out empty parts
+}
+
+// Function for split operation
+function splitOperation(iString) {
+  const cName = keepAlpha(iString)
+  return getStringList(cName)
+    .map((str) => str.toLowerCase())
+    .join(' ')
+}
+
+// Function for combine operation
+function combineOperation(iString, classType) {
+  const lName = iString.split(' ')
+  const n = []
+
+  for (let i = 0; i < lName.length; i++) {
+    if (classType !== 'C') {
+      if (i === 0) {
+        n.push(lName[i].toLowerCase())
+      } else {
+        n.push(
+          lName[i].charAt(0).toUpperCase() + lName[i].slice(1).toLowerCase()
+        )
+      }
+    } else {
+      n.push(lName[i].charAt(0).toUpperCase() + lName[i].slice(1).toLowerCase())
+    }
+  }
+
+  if (classType === 'M') {
+    n.push('()')
+  }
+
+  return n.join('')
+}
+
+// Main convert function
+function convert(input) {
+  const operation = input[0]
+  const classType = input[2]
+  const className = input.slice(4).trim()
+
+  if (operation === 'S') {
+    return splitOperation(className)
+  } else {
+    return combineOperation(className, classType)
+  }
+}
+
+// Reading input from stdin
+rl.on('line', (line) => {
+  console.log(convert(line.trim()))
+})
+
+// Example input for testing
+// Uncomment these to test directly
+// const testInputs = [
+//     "S;M;plasticCup()",
+//     "S;C;LargeSoftwareBook",
+//     "C;V;mobile phone",
+//     "C;M;mouse pad"
+// ];
+// testInputs.forEach(input => console.log(convert(input)));
+
+
+
+
+
+// om
+
+// function camleCase(input) {
+//     const parts = input.split(";");
+//     const operation = parts[0];
+//     const type = parts[1];
+//     const words = parts.slice(2).join(" ");
+  
+//     if (operation === "S") {
+//       let camelCaseStr = words;
+//       let result = "";
+//       for (let i = 0; i < camelCaseStr.length; i++) {
+//         if (i > 0 && camelCaseStr[i] === camelCaseStr[i].toUpperCase()) {
+//           result += " ";
+//         }
+//         result += camelCaseStr[i].toLowerCase();
+//       }
+//       if (type === "M" && result.endsWith("()")) {
+//         result = result.slice(0, -2);
+//       }
+//       console.log(result.trim());
+//     } else if (operation === "C") {
+//       const wordsArray = words.split(" ");
+//       let camelCaseStr = "";
+//       if (type === "C") {
+//         camelCaseStr = wordsArray
+//           .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+//           .join("");
+//       } else {
+//         camelCaseStr = wordsArray[0].toLowerCase() +
+//           wordsArray.slice(1)
+//             .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+//             .join("");
+//       }
+//       if (type === "M") {
+//         camelCaseStr += "()";
+//       }
+//       console.log(camelCaseStr);
+//     }
+//   }
+  
+//   // Test cases
+//   camleCase("S;M;plasticCup()"); // plastic cup
+//   camleCase("C;V;mobile phone"); // mobilePhone
+//   camleCase("C;C;coffee machine"); // CoffeeMachine
+//   camleCase("S;C;LargeSoftwareBook"); // large software book
+//   camleCase("C;M;white sheet of paper"); // whiteSheetOfPaper()
+//   camleCase("S;V;pictureFrame"); // picture frame
+//   camleCase("C;C;helloworldworld"); // HelloWorldWorld
