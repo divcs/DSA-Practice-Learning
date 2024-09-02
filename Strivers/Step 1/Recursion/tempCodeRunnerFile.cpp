@@ -1,22 +1,36 @@
 #include <iostream>
 using namespace std;
 
-int factorial(int i)
+void displayArray(int arr[], int n)
 {
-
- if (i == 0)
+ cout << "The reversed array is: " << endl;
+ for (int i = 0; i < n; i++)
  {
-  return 1;
+  cout << arr[i];
  }
- return i * factorial(i - 1);
+}
+
+void reverseArray(int arr[], int start, int end)
+{
+ if (start < end)
+ {
+  swap(arr[start], arr[end]);
+  reverseArray(arr, start + 1, end - 1);
+ }
 }
 
 int main()
 {
  int n;
+ cout << "Enter the size of array:" << endl;
  cin >> n;
-
- cout << "Factorial of " << n << " is: " << factorial(n) << endl;
-
+ int arr[n];
+ cout << "Enter the elements of array:" << endl;
+ for (int i = 0; i < n; i++)
+ {
+  cin >> arr[i];
+ }
+ reverseArray(arr, 0, n - 1);
+ displayArray(arr, n);
  return 0;
 }
