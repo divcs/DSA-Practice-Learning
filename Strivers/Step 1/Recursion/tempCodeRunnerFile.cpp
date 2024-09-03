@@ -1,36 +1,27 @@
+
 #include <iostream>
 using namespace std;
 
-void displayArray(int arr[], int n)
+bool palindromeTest(int i, string &s)
 {
- cout << "The reversed array is: " << endl;
- for (int i = 0; i < n; i++)
- {
-  cout << arr[i];
- }
-}
-
-void reverseArray(int arr[], int start, int end)
-{
- if (start < end)
- {
-  swap(arr[start], arr[end]);
-  reverseArray(arr, start + 1, end - 1);
- }
+ if (i >= s.length() / 2)
+  return true;
+ if (s[i] != s[s.length() - i - 1])
+  return false;
+ return palindromeTest(i + 1, s);
 }
 
 int main()
 {
- int n;
- cout << "Enter the size of array:" << endl;
- cin >> n;
- int arr[n];
- cout << "Enter the elements of array:" << endl;
- for (int i = 0; i < n; i++)
+ string s = "race";
+ bool res = palindromeTest(0, s);
+ if (res == true)
  {
-  cin >> arr[i];
+  cout << "Palindrome";
  }
- reverseArray(arr, 0, n - 1);
- displayArray(arr, n);
+ else
+  cout << "Not Palindrome";
+ cout << endl;
+
  return 0;
 }
