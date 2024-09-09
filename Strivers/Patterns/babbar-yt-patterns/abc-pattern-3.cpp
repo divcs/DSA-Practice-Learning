@@ -8,13 +8,15 @@ int main()
 
  int row = 1;
 
+ char c = 'A';
  while (row <= n)
  {
   int col = 1;
   while (col <= n)
   {
-   char c = 'A' + col - 1;
+
    cout << c;
+   c = c + 1;
    col = col + 1;
   }
 
