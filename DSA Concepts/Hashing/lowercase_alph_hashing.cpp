@@ -4,7 +4,8 @@ using namespace std;
 
 int main()
 {
- // string is any case
+
+ // string is all lowercase
  string s;
  cin >> s;
 
@@ -12,11 +13,10 @@ int main()
  cin >> q;
 
  // hash array precomputation
- int hash[256] = {0};
+ int hash[26] = {0};
  for (int i = 0; i < s.length(); i++)
  {
-  // use char - 'A' for uppercase string only
-  hash[s[i]]++; // autocasts char to int value since hash array is int
+  hash[s[i] - 'a']++;
  }
 
  while (q--)
@@ -24,7 +24,8 @@ int main()
   char ch;
   cin >> ch;
 
-  cout << hash[ch] << endl;
+  cout << hash[ch - 'a'] << endl;
  }
+
  return 0;
 }
