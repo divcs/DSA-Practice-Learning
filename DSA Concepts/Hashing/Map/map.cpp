@@ -1,4 +1,5 @@
 // map stores values in sorted order
+// storing and fetching takes log N (N number of elements in map)
 
 #include <iostream>
 #include <map>
