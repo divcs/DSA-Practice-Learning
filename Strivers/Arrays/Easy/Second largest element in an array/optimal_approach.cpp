@@ -1,27 +1,30 @@
-// TC: O(N log N)+O(N) for sorting and then looping over
+// TC: O(N)
+
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 int secLargestElement(vector<int> &vect)
 {
  int s = vect.size();
+ int largest = vect[0];
  int secl = -1;
 
- sort(vect.begin(), vect.end());
- int largest = vect[s - 1];
-
- for (int i = s - 2; i >= 0; i--)
+ for (int i = 0; i < s; i++)
  {
-  if (vect[i] != largest)
+  if (vect[i] > largest)
+  {
+   secl = largest;
+   largest = vect[i];
+  }
+  else if (vect[i] < largest && vect[i] > secl)
   {
    secl = vect[i];
-   break;
   }
  }
  return secl;
 }
+
 int main()
 {
  int size;
