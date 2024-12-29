@@ -27,10 +27,11 @@ int main()
  int size;
  cin >> size;
  vector<int> v(size);
- while (size--)
+ for (int i = 0; i < size; i++)
  {
-  cin >> v[size];
+  cin >> v[i];
  }
+
  cout << sSmallestElement(v) << endl;
 
  return 0;
