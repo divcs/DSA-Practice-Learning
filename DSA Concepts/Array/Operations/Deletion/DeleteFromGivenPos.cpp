@@ -3,7 +3,6 @@ using namespace std;
 
 int main()
 {
-
  int size;
  cout << "Enter size of array:";
  cin >> size;
@@ -16,24 +15,19 @@ int main()
  }
 
  int pos;
- cout << "Enter position of new element: ";
+ cout << "Enter position of element to delete: ";
  cin >> pos;
- int item;
- cout << "Enter new item to insert: ";
- cin >> item;
 
- for (int i = size - 1; i >= pos; i--)
+ for (int i = pos; i <= size - 1; i++)
  {
-  arr[i + 1] = arr[i];
+  arr[i] = arr[i + 1];
  }
- arr[pos] = item;
- size++;
+ size--;
 
  cout << "New array is:";
  for (int i = 0; i < size; i++)
  {
   cout << arr[i] << " ";
  }
-
  return 0;
 }

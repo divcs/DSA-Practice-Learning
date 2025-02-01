@@ -15,12 +15,15 @@ int main()
   cin >> arr[i];
  }
 
- int pos;
- cout << "Enter position of new element: ";
- cin >> pos;
- int item;
- cout << "Enter new item to insert: ";
- cin >> item;
+ int totalItemsToInsert;
+ cin >> totalItemsToInsert;
+
+ int InsertItemsArray[totalItemsToInsert];
+
+ for (int i = 0; i < totalItemsToInsert; i++)
+ {
+  cin >> InsertItemsArray[i];
+ }
 
  for (int i = size - 1; i >= pos; i--)
  {
