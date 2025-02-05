@@ -1,58 +1,57 @@
-#include <iostream>
+// C++ program to illustrate Saddle point
+#include <bits/stdc++.h>
 using namespace std;
 
-void findSaddlePoint(int matrix[][3], int rows, int cols)
+const int MAX = 100;
+
+// Function to find saddle point
+bool findSaddlePoint(int mat[MAX][MAX], int n)
 {
- bool found = false;
+    // Process all rows one by one
+    for (int i = 0; i < n; i++)
+    {
+        // Find the minimum element of row i.
+        // Also find column index of the minimum element
+        int min_row = mat[i][0], col_ind = 0;
+        for (int j = 1; j < n; j++)
+        {
+            if (min_row > mat[i][j])
+            {
+                min_row = mat[i][j];
+                col_ind = j;
+            }
+        }
 
- for (int i = 0; i < rows; i++)
- {
-  int rowMin = matrix[i][0]; // Assume first element in row is minimum
-  int colIndex = 0;          // Store column index of minimum element
+        // Check if the minimum element of row is also
+        // the maximum element of column or not
+        int k;
+        for (k = 0; k < n; k++)
 
-  // Find the minimum element in the current row
-  for (int j = 1; j < cols; j++)
-  {
-   if (matrix[i][j] < rowMin)
-   {
-    rowMin = matrix[i][j];
-    colIndex = j;
-   }
-  }
+            // Note that col_ind is fixed
+            if (min_row < mat[k][col_ind])
+                break;
 
-  // Check if rowMin is the maximum in its column
-  bool isSaddlePoint = true;
-  for (int k = 0; k < rows; k++)
-  {
-   if (matrix[k][colIndex] > rowMin)
-   {
-    isSaddlePoint = false;
-    break;
-   }
-  }
+        // If saddle point is present in this row then
+        // print it
+        if (k == n)
+        {
+            cout << "Value of Saddle Point " << min_row;
+            return true;
+        }
+    }
 
-  // If saddle point found, print and set found flag
-  if (isSaddlePoint)
-  {
-   cout << "Saddle Point: " << rowMin << " at position (" << i << ", " << colIndex << ")" << endl;
-   found = true;
-  }
- }
-
- if (!found)
- {
-  cout << "No Saddle Point found." << endl;
- }
+    // If Saddle Point not found
+    return false;
 }
 
+// Driver code
 int main()
 {
- int matrix[3][3] = {
-     {4, 3, 6},
-     {8, 5, 9},
-     {7, 2, 1}};
-
- findSaddlePoint(matrix, 3, 3);
-
- return 0;
+    int mat[MAX][MAX] = {{1, 2, 3},
+                         {4, 5, 6},
+                         {7, 8, 9}};
+    int n = 3;
+    if (findSaddlePoint(mat, n) == false)
+        cout << "No Saddle Point ";
+    return 0;
 }
